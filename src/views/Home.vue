@@ -5,7 +5,7 @@
       <div
         class="cardsSortBlock"
         v-for="(FilteNumber, index) in FilteNumbers"
-        :key="index"
+        :key="`${index}_${allNumbers.length}`"
       >
         <p class="sortAlphabet">
           {{ FilteNumber[FilteNumber.length - 1].name[0] }}
@@ -22,18 +22,26 @@
     </div>
     <div class="noContact" v-else>
       <span>Добавить контакт</span>
+      <a
+        data-target="modal3"
+        class="btn-floating btn-large waves-effect waves-light red modal-trigger"
+        ><i class="material-icons">add</i></a
+      >
     </div>
     <app-modal-remove :id="id" />
     <app-modal-edit :number="number" :image="avatars[id]" />
+    <app-modal-create :number="number" :id="allNumbers.length + 1" />
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 import AppSidebar from "../components/app/AppSidebar";
-import AppModalRemove from "../components/app/AppModalRemove";
-import AppModalEdit from "../components/app/AppModalEdit";
 import AppCard from "../components/app/AppCard";
+
+import AppModalRemove from "../components/Modals/AppModalRemove";
+import AppModalEdit from "../components/Modals/AppModalEdit";
+import AppModalCreate from "../components/Modals/AppModalCrate";
 export default {
   data: () => ({
     id: 0,
@@ -50,11 +58,20 @@ export default {
       "12.jpg",
       "kl.jpg",
       "15.jpg",
-      "A2.jpg"
+      "A2.jpg",
+      "A.jpg",
+      "A3.jpg",
+      "A4.jpg"
     ]
   }),
   computed: mapGetters(["allNumbers", "FilteNumbers"]),
-  components: { AppSidebar, AppCard, AppModalRemove, AppModalEdit },
+  components: {
+    AppSidebar,
+    AppCard,
+    AppModalRemove,
+    AppModalEdit,
+    AppModalCreate
+  },
   methods: {
     removeContact(id) {
       document.querySelector(".home").style.overflowY = "hidden";
@@ -88,5 +105,8 @@ export default {
   position: absolute;
   top: 70px;
   margin: auto;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
 }
 </style>

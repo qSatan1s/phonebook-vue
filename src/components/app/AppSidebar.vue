@@ -22,7 +22,7 @@
       </router-link>
     </li>
     <li>
-      <a class="waves-effect">
+      <a class="pointer modal-trigger" data-target="modal3">
         <i class="material-icons">add_to_photos</i>Add Contact
       </a>
     </li>
@@ -68,5 +68,8 @@ export default {
   width: 100%;
   display: flex;
   justify-content: center;
+}
+.pointer {
+  cursor: pointer;
 }
 </style>

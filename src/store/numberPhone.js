@@ -12,6 +12,9 @@ export default {
     },
     async EditNumber(ctx, formData) {
       ctx.commit("editNumber", formData);
+    },
+    async CrateNumber(ctx, formData) {
+      ctx.commit("CrateNumber", formData);
     }
   },
   state: {
@@ -19,6 +22,9 @@ export default {
     FilteNumber: []
   },
   mutations: {
+    CrateNumber(state, formData) {
+      state.numbers.push(formData);
+    },
     updateNumber(state, numbers) {
       state.numbers = numbers.sort((a, b) => (a.name > b.name ? 1 : -1));
     },
