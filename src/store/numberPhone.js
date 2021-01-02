@@ -15,6 +15,9 @@ export default {
   mutations: {
     updatePost(state, numbers) {
       state.numbers = numbers.sort((a, b) => (a.name > b.name ? 1 : -1));
+    },
+    removeNumber(state, id) {
+      state.numbers = state.numbers.filter(c => c.id !== id);
     }
   },
   getters: {
@@ -33,7 +36,7 @@ export default {
       var c = Object.keys(d).map(function(key) {
         return d[key];
       });
-      return c;
+      return (state.FilteNumber = c);
     }
   }
 };

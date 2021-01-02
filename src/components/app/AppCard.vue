@@ -2,17 +2,22 @@
   <div class="cardPhone col s12">
     <div class="card horizontal">
       <div class="card-image">
-        <img src="../../assets/images/users/qSatan1s.jpg" alt="" />
+        <img src="../../assets/images/users/qSatan1s.jpg" :alt="number.name" />
       </div>
       <div class="card-stacked">
         <div class="card-action card-info">
           <a class=" card-name">{{ number.name }}</a>
         </div>
         <div class="card-btns">
-          <a class="btn btn-floating btn-large waves-effect waves-light blue"
+          <a
+            @click="editNumber(number.id)"
+            class="btn btn-floating btn-large waves-effect waves-light blue"
             ><i class="material-icons">edit</i></a
           >
-          <a class="btn btn-floating btn-large waves-effect waves-light red"
+          <a
+            @click.prevent="$emit('remove')"
+            data-target="modal1"
+            class="btn btn-floating btn-large waves-effect waves-light red modal-trigger"
             ><i class="material-icons">delete</i></a
           >
         </div>
@@ -23,13 +28,19 @@
 
 <script>
 export default {
-  props: ["number"]
+  props: ["number"],
+  methods: {
+    editNumber(id) {
+      document.querySelector(".home").style.overflowY = "hidden";
+      console.log(id);
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 .card {
-  margin: 5px 0;
+  margin: 10px 0;
   height: 60px;
   overflow: hidden;
   display: flex;

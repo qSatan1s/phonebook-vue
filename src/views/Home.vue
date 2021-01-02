@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <app-sidebar />
-    <div class="cardsBlock">
+    <div class="cardsBlock" v-if="allNumbers.length > 0">
       <div
         class="cardsSortBlock"
         v-for="(FilteNumber, index) in FilteNumbers"
@@ -13,20 +13,35 @@
         <app-card
           v-for="number in FilteNumber"
           :key="number.id"
+          @remove="removeContact(number.id)"
           :number="number"
         />
       </div>
     </div>
+    <div class="noContact" v-else>
+      <span>Добавить контакт</span>
+    </div>
+    <AppModal :id="id" />
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 import AppSidebar from "../components/app/AppSidebar";
+import AppModal from "../components/app/AppModal";
 import AppCard from "../components/app/AppCard";
 export default {
+  data: () => ({
+    id: Number
+  }),
   computed: mapGetters(["allNumbers", "FilteNumbers"]),
-  components: { AppSidebar, AppCard }
+  components: { AppSidebar, AppCard, AppModal },
+  methods: {
+    removeContact(id) {
+      document.querySelector(".home").style.overflowY = "hidden";
+      this.id = id;
+    }
+  }
 };
 </script>
 
@@ -42,5 +57,13 @@ export default {
 .sortAlphabet {
   font-weight: bold;
   margin-left: 20px;
+}
+.noContact {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  position: absolute;
+  top: 70px;
+  margin: auto;
 }
 </style>
