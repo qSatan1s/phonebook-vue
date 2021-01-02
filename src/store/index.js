@@ -1,7 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import auth from "./auth.store";
-
+import layout from "./layout.store";
+import numberPhone from "./numberPhone.js";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -20,6 +21,8 @@ export default new Vuex.Store({
     error: s => s.error
   },
   modules: {
-    auth
+    auth,
+    layout,
+    numberPhone
   }
 });

@@ -7,16 +7,24 @@
           <i class="material-icons right">code</i>repository
         </a>
       </nav>
+      <AppNavbar />
       <router-view />
     </div>
   </div>
 </template>
 
 <script>
-export default { name: "DefaultLayout" };
+import AppNavbar from "../components/app/AppNavbar";
+export default {
+  components: { AppNavbar }
+};
 </script>
 
 <style lang="scss" scoped>
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
 .empty-layout {
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -37,7 +45,7 @@ export default { name: "DefaultLayout" };
   border-radius: 10px;
   position: relative;
   display: block;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .nav {

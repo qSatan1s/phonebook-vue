@@ -14,14 +14,15 @@ const routes = [
     name: "Home",
     component: Home,
     meta: {
-      middleware: [auth]
+      middleware: [auth],
+      layout: "auth-layout"
     }
   },
   {
     path: "/login",
     name: "Login",
     component: Login,
-    meta: { requiresAuth: false }
+    meta: { requiresAuth: false, layout: "default-layout" }
   }
 ];
 

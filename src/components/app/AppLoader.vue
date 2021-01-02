@@ -18,5 +18,6 @@
 .preloader-wrapper {
   position: absolute;
   z-index: 1000;
+  top: 40%;
 }
 </style>

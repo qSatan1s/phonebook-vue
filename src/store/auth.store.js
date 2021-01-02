@@ -10,11 +10,15 @@ export default {
             resolve("moke-token");
           }, 2000);
         });
+        dispatch("FeatchNumbers");
         dispatch("setToken", token);
       } catch (e) {
         commit("setError", e);
         throw e;
       }
+    },
+    logout({ commit }) {
+      commit("clearToken");
     },
     setToken({ commit }, token) {
       commit("setToken", token);
