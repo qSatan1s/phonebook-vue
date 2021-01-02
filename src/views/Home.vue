@@ -14,32 +14,55 @@
           v-for="number in FilteNumber"
           :key="number.id"
           @remove="removeContact(number.id)"
+          @edit="editContact(number)"
           :number="number"
+          :image="avatars[number.id]"
         />
       </div>
     </div>
     <div class="noContact" v-else>
       <span>Добавить контакт</span>
     </div>
-    <AppModal :id="id" />
+    <app-modal-remove :id="id" />
+    <app-modal-edit :number="number" :image="avatars[id]" />
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 import AppSidebar from "../components/app/AppSidebar";
-import AppModal from "../components/app/AppModal";
+import AppModalRemove from "../components/app/AppModalRemove";
+import AppModalEdit from "../components/app/AppModalEdit";
 import AppCard from "../components/app/AppCard";
 export default {
   data: () => ({
-    id: Number
+    id: 0,
+    number: {},
+    avatars: [
+      "qSatan1s.jpg",
+      "n8hrt.jpg",
+      "A1.jpg",
+      "13.jpg",
+      "2.jpg",
+      "3.jpg",
+      "10.jpg",
+      "11.jpg",
+      "12.jpg",
+      "kl.jpg",
+      "15.jpg",
+      "A2.jpg"
+    ]
   }),
   computed: mapGetters(["allNumbers", "FilteNumbers"]),
-  components: { AppSidebar, AppCard, AppModal },
+  components: { AppSidebar, AppCard, AppModalRemove, AppModalEdit },
   methods: {
     removeContact(id) {
       document.querySelector(".home").style.overflowY = "hidden";
       this.id = id;
+    },
+    editContact(number) {
+      this.number = number;
+      this.id = number.id;
     }
   }
 };

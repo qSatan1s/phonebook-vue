@@ -3,7 +3,7 @@ import Vuelidate from "vuelidate";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import Loader from "./components/app/AppLoader.vue";
+import Loader from "@/components/app/AppLoader.vue";
 import DefaultLayout from "./layout/DefaultLayout.vue";
 import AuthLayout from "./layout/AuthLayout.vue";
 import "./registerServiceWorker";

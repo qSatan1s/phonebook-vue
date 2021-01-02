@@ -34,7 +34,9 @@ export default {
   methods: {
     async removeNumber() {
       document.querySelector(".home").style.overflowY = null;
-      this.$store.commit("removeNumber", this.id);
+      try {
+        await this.$store.dispatch("removeNumber", this.id);
+      } catch (e) {}
     }
   }
 };
@@ -43,16 +45,19 @@ export default {
 <style lang="scss" scoped>
 .modal {
   position: absolute;
+  width: 300px;
 }
 .modal--title {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-transform: capitalize;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: bold;
 }
 .warning {
   color: orange;
-  margin: 0 10px;
+  margin: 0 5px;
 }
 .modal-footer {
   display: flex;

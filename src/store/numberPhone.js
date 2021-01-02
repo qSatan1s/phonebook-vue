@@ -5,7 +5,13 @@ export default {
 
       const numbers = await res.json();
 
-      ctx.commit("updatePost", numbers);
+      ctx.commit("updateNumber", numbers);
+    },
+    async removeNumber(ctx, id) {
+      ctx.commit("removeNumber", id);
+    },
+    async EditNumber(ctx, formData) {
+      ctx.commit("editNumber", formData);
     }
   },
   state: {
@@ -13,11 +19,19 @@ export default {
     FilteNumber: []
   },
   mutations: {
-    updatePost(state, numbers) {
+    updateNumber(state, numbers) {
       state.numbers = numbers.sort((a, b) => (a.name > b.name ? 1 : -1));
     },
     removeNumber(state, id) {
       state.numbers = state.numbers.filter(c => c.id !== id);
+    },
+    editNumber(state, formData) {
+      return state.numbers.forEach(c => {
+        if (c.id === formData.id) {
+          c.name = formData.name.trim();
+          c.phone = formData.phone;
+        }
+      });
     }
   },
   getters: {

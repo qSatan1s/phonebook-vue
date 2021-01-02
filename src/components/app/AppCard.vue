@@ -2,7 +2,10 @@
   <div class="cardPhone col s12">
     <div class="card horizontal">
       <div class="card-image">
-        <img src="../../assets/images/users/qSatan1s.jpg" :alt="number.name" />
+        <img
+          :src="require(`@/assets/images/users/${image}`)"
+          :alt="number.name"
+        />
       </div>
       <div class="card-stacked">
         <div class="card-action card-info">
@@ -10,14 +13,15 @@
         </div>
         <div class="card-btns">
           <a
-            @click="editNumber(number.id)"
-            class="btn btn-floating btn-large waves-effect waves-light blue"
+            @click.prevent="$emit('edit')"
+            data-target="modal2"
+            class="btn btn-floating btn-large blue modal-trigger"
             ><i class="material-icons">edit</i></a
           >
           <a
             @click.prevent="$emit('remove')"
             data-target="modal1"
-            class="btn btn-floating btn-large waves-effect waves-light red modal-trigger"
+            class="btn btn-floating btn-large red modal-trigger"
             ><i class="material-icons">delete</i></a
           >
         </div>
@@ -28,7 +32,7 @@
 
 <script>
 export default {
-  props: ["number"],
+  props: ["number", "image"],
   methods: {
     editNumber(id) {
       document.querySelector(".home").style.overflowY = "hidden";
@@ -57,10 +61,16 @@ export default {
 
 .card-image {
   overflow: hidden;
-  object-fit: contain;
   min-width: 50px;
-  width: 50px;
+  min-height: 50px;
+  width: 60px;
+  height: 100%;
+  max-width: 100% !important;
   border-radius: 100%;
+
+  img {
+    object-fit: contain;
+  }
 }
 .card-stacked {
   display: flex;
