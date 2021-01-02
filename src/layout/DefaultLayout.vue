@@ -3,7 +3,7 @@
     <div class="card card-layout">
       <nav class="nav black">
         <span class="nav--title">testphonebook</span>
-        <a class="nav--link" target="_blank" href="https://github.com/qSatan1s">
+        <a class="nav--link" target="_blank" href="https://github.com/qSatan1s/phonebook-vue">
           <i class="material-icons right">code</i>repository
         </a>
       </nav>
