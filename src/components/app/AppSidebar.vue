@@ -12,7 +12,7 @@
           ><span class="white-text name center">Kirill Bashlykov</span></a
         >
         <a href="#email"
-          ><span class="white-text email center">qSatan1s@yandex.ru</span></a
+          ><span class="white-text email center">+45616354685</span></a
         >
       </div>
     </li>
@@ -22,7 +22,11 @@
       </router-link>
     </li>
     <li>
-      <a class="pointer modal-trigger" data-target="modal3">
+      <a
+        @click="overfloHide()"
+        class="pointer modal-trigger"
+        data-target="modal3"
+      >
         <i class="material-icons">add_to_photos</i>Add Contact
       </a>
     </li>
@@ -49,6 +53,9 @@ export default {
       this.$store.dispatch("logout");
       this.$router.push("/login?message=logout");
       return this.instances.close();
+    },
+    overfloHide() {
+      document.querySelector(".home").style.overflowY = "hidden";
     }
   }
 };

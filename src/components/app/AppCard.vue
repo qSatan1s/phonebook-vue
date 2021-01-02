@@ -11,18 +11,18 @@
         <div class="card-action card-info">
           <a class=" card-name">{{ number.name }}</a>
         </div>
-        <div class="card-btns">
+        <div class="card-btns" @click="overfloHide($event.target.classList)">
           <a
             @click.prevent="$emit('edit')"
             data-target="modal2"
             class="btn btn-floating btn-large blue modal-trigger"
-            ><i class="material-icons">edit</i></a
+            ><i class="btnIcon material-icons">edit</i></a
           >
           <a
             @click.prevent="$emit('remove')"
             data-target="modal1"
             class="btn btn-floating btn-large red modal-trigger"
-            ><i class="material-icons">delete</i></a
+            ><i class="btnIcon material-icons">delete</i></a
           >
         </div>
       </div>
@@ -34,9 +34,10 @@
 export default {
   props: ["number", "image"],
   methods: {
-    editNumber(id) {
-      document.querySelector(".home").style.overflowY = "hidden";
-      console.log(id);
+    overfloHide(e) {
+      if ("btnIcon" === e[0]) {
+        document.querySelector(".home").style.overflowY = "hidden";
+      }
     }
   }
 };

@@ -15,11 +15,15 @@ export default {
     },
     async CrateNumber(ctx, formData) {
       ctx.commit("CrateNumber", formData);
+    },
+    async searchNumber(ctx, value) {
+      ctx.commit("searchNumber", value);
     }
   },
   state: {
     numbers: [],
-    FilteNumber: []
+    FilteNumber: [],
+    value: ""
   },
   mutations: {
     CrateNumber(state, formData) {
@@ -30,6 +34,9 @@ export default {
     },
     removeNumber(state, id) {
       state.numbers = state.numbers.filter(c => c.id !== id);
+    },
+    searchNumber(state, value) {
+      state.value = value.toLowerCase();
     },
     editNumber(state, formData) {
       return state.numbers.forEach(c => {
@@ -45,12 +52,19 @@ export default {
       return state.numbers;
     },
     FilteNumbers(state) {
+      let nummber = state.numbers;
+      if (state.value) {
+        nummber = nummber.filter(
+          data =>
+            data.name.toLowerCase().indexOf(state.value) !== -1 ||
+            data.phone.toLowerCase().indexOf(state.value) !== -1
+        );
+      }
       var d = {};
+      nummber.forEach(function(user) {
+        if (typeof d[user.name[0]] == "undefined") d[user.name[0]] = [];
 
-      state.numbers.forEach(function(value) {
-        if (typeof d[value.name[0]] == "undefined") d[value.name[0]] = [];
-
-        d[value.name[0]].push(value);
+        d[user.name[0]].push(user);
       });
 
       var c = Object.keys(d).map(function(key) {

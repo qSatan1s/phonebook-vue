@@ -6,7 +6,7 @@
       </h5>
       <p class="center">Вы действительно хотите удалить этот контакт?</p>
     </div>
-    <div class="modal-footer">
+    <div class="modal-footer" @click="overflow">
       <a
         href="#"
         class="cancelModal btnModal modal-close waves-effect waves-red btn-flat"
@@ -33,10 +33,12 @@ export default {
   },
   methods: {
     async removeNumber() {
-      document.querySelector(".home").style.overflowY = null;
       try {
         await this.$store.dispatch("removeNumber", this.id);
       } catch (e) {}
+    },
+    overflow() {
+      document.querySelector(".home").style.overflowY = null;
     }
   }
 };

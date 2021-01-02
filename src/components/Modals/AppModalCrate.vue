@@ -54,7 +54,7 @@
         >
       </div>
     </div>
-    <div class="modal-footer">
+    <div class="modal-footer" @click="overflow">
       <a
         class="cancelModal btnModal modal-close waves-effect waves-red btn-flat"
         >Отменить</a
@@ -105,6 +105,9 @@ export default {
         this.name = this.numberPhone = "";
         M.Modal.init(document.querySelectorAll(".modal")).close();
       } catch (e) {}
+    },
+    overflow() {
+      document.querySelector(".home").style.overflowY = null;
     }
   }
 };
